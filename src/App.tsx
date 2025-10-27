@@ -233,7 +233,6 @@ const App: React.FC = () => {
           <PromptTable
             prompts={state.shown}
             language={state.language}
-            copyMode={state.copyMode}
             onCopy={handleCopy}
             onSave={handleSave}
             onRandomReplace={handleRandomReplace}

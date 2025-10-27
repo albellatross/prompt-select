@@ -6,7 +6,6 @@ import { texts } from '../i18n';
 interface PromptTableProps {
   prompts: PromptItem[];
   language: 'en' | 'zh';
-  copyMode: 'prompt' | 'title+prompt';
   onCopy: (content: string) => void;
   onSave: (id: number, title: string, prompt: string) => void;
   onRandomReplace: (id: number) => void;
@@ -16,7 +15,6 @@ interface PromptTableProps {
 const PromptTable: React.FC<PromptTableProps> = ({
   prompts,
   language,
-  copyMode,
   onCopy,
   onSave,
   onRandomReplace,
@@ -52,10 +50,8 @@ const PromptTable: React.FC<PromptTableProps> = ({
     const title = language === 'zh' && prompt.titleZh ? prompt.titleZh : prompt.title;
     const promptText = language === 'zh' && prompt.promptZh ? prompt.promptZh : prompt.prompt;
     
-    // 单个复制总是包含标题，但根据copyMode决定格式
-    const content = copyMode === 'prompt' 
-      ? promptText 
-      : `**${title}**\n${promptText}`;
+    // 单个复制总是包含标题
+    const content = `**${title}**\n${promptText}`;
       
     onCopy(content);
     setCopiedId(prompt.id);
