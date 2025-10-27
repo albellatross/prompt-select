@@ -2,6 +2,8 @@
 
 A minimalist, elegant prompt randomizer designed for creative AI workflows. Generate, edit, and manage creative prompts with a clean, European-inspired interface.
 
+🌐 **Live Demo**: https://albellatross.github.io/prompt-select/
+
 🌐 **Live Demo**: [https://albellatross.github.io/prompt-select/](https://albellatross.github.io/prompt-select/)
 
 ## ✨ Features
