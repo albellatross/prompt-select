@@ -52,6 +52,7 @@ const PromptTable: React.FC<PromptTableProps> = ({
     const title = language === 'zh' && prompt.titleZh ? prompt.titleZh : prompt.title;
     const promptText = language === 'zh' && prompt.promptZh ? prompt.promptZh : prompt.prompt;
     
+    // 单个复制总是包含标题，但根据copyMode决定格式
     const content = copyMode === 'prompt' 
       ? promptText 
       : `**${title}**\n${promptText}`;

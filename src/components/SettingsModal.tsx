@@ -99,15 +99,15 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
             <h4 className="text-sm font-medium text-gray-900 mb-2">
               {language === 'zh' ? '复制格式预览：' : 'Copy Format Preview:'}
             </h4>
-            <div className="text-xs text-gray-600 font-mono bg-white p-3 rounded border">
+            <div className="text-xs text-gray-600 font-mono bg-white p-3 rounded border max-h-32 overflow-y-auto">
               {copyMode === 'prompt' ? (
                 language === 'zh' ? 
-                '将这张图片制作成水彩画。' : 
-                'Create this picture as a watercolor painting.'
+                '将这张图片制作成水彩画。\n\n创建一个微观细节特写聚焦变体。\n\n将这张图片制作成现代剪纸风格，具有分层的颜色和柔和的阴影。' : 
+                'Create this picture as a watercolor painting.\n\nCreate a micro-detail close-up focus variant.\n\nCreate this picture as a modern paper cut, with layered colors and soft shadows.'
               ) : (
                 language === 'zh' ? 
-                '**改为水彩画**\n将这张图片制作成水彩画。' : 
-                '**Change to Watercolor**\nCreate this picture as a watercolor painting.'
+                '**改为水彩画**\n将这张图片制作成水彩画。\n\n**放大到细节**\n创建一个微观细节特写聚焦变体。\n\n**切换到剪纸风格**\n将这张图片制作成现代剪纸风格，具有分层的颜色和柔和的阴影。' : 
+                '**Change to Watercolor**\nCreate this picture as a watercolor painting.\n\n**Zoom into Detail**\nCreate a micro-detail close-up focus variant.\n\n**Switch to Paper Cut**\nCreate this picture as a modern paper cut, with layered colors and soft shadows.'
               )}
             </div>
           </div>

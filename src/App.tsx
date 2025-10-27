@@ -102,15 +102,15 @@ const App: React.FC = () => {
     
     let content = '';
     if (state.copyMode === 'prompt') {
-      content = state.shown.map((prompt, index) => {
+      content = state.shown.map((prompt) => {
         const promptText = state.language === 'zh' && prompt.promptZh ? prompt.promptZh : prompt.prompt;
-        return `${index + 1}. ${promptText}`;
+        return promptText;
       }).join('\n\n');
     } else {
-      content = state.shown.map((prompt, index) => {
+      content = state.shown.map((prompt) => {
         const title = state.language === 'zh' && prompt.titleZh ? prompt.titleZh : prompt.title;
         const promptText = state.language === 'zh' && prompt.promptZh ? prompt.promptZh : prompt.prompt;
-        return `${index + 1}. **${title}**\n${promptText}`;
+        return `**${title}**\n${promptText}`;
       }).join('\n\n');
     }
     
