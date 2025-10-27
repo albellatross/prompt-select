@@ -83,7 +83,21 @@ const App: React.FC = () => {
   
   const handleCopy = async (content: string) => {
     try {
-      await navigator.clipboard.writeText(content);
+      // 尝试同时复制纯文本和富文本格式
+      if (navigator.clipboard && window.ClipboardItem) {
+        // 将Markdown格式转换为HTML格式
+        const htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+        
+        const clipboardItem = new ClipboardItem({
+          'text/plain': new Blob([content], { type: 'text/plain' }),
+          'text/html': new Blob([htmlContent], { type: 'text/html' })
+        });
+        
+        await navigator.clipboard.write([clipboardItem]);
+      } else {
+        // 回退到普通文本复制
+        await navigator.clipboard.writeText(content);
+      }
       showToast(t.toast.copied);
     } catch (error) {
       // Fallback for browsers that don't support clipboard API
@@ -115,7 +129,21 @@ const App: React.FC = () => {
     }
     
     try {
-      await navigator.clipboard.writeText(content);
+      // 尝试同时复制纯文本和富文本格式
+      if (navigator.clipboard && window.ClipboardItem) {
+        // 将Markdown格式转换为HTML格式
+        const htmlContent = content.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+        
+        const clipboardItem = new ClipboardItem({
+          'text/plain': new Blob([content], { type: 'text/plain' }),
+          'text/html': new Blob([htmlContent], { type: 'text/html' })
+        });
+        
+        await navigator.clipboard.write([clipboardItem]);
+      } else {
+        // 回退到普通文本复制
+        await navigator.clipboard.writeText(content);
+      }
       showToast(t.toast.copiedAll);
     } catch (error) {
       // Fallback for browsers that don't support clipboard API

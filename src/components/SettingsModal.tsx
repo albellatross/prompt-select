@@ -87,7 +87,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     {t.settings.copyTitleAndPrompt}
                   </div>
                   <div className="text-sm text-gray-500">
-                    {language === 'zh' ? '复制粗体标题和提示词' : 'Copy bold title and prompt'}
+                    {language === 'zh' ? '复制真正的粗体标题和提示词（支持富文本）' : 'Copy real bold title and prompt (rich text supported)'}
                   </div>
                 </div>
               </label>
