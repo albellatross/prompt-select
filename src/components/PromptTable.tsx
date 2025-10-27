@@ -54,7 +54,7 @@ const PromptTable: React.FC<PromptTableProps> = ({
     
     const content = copyMode === 'prompt' 
       ? promptText 
-      : `${title}\n${promptText}`;
+      : `**${title}**\n${promptText}`;
       
     onCopy(content);
     setCopiedId(prompt.id);

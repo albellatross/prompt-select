@@ -3,6 +3,7 @@ import Header from './components/Header';
 import ControlsBar from './components/ControlsBar';
 import PromptTable from './components/PromptTable';
 import ReplaceDialog from './components/ReplaceDialog';
+import SettingsModal from './components/SettingsModal';
 import { PromptItem, AppState } from './types';
 import { defaultPrompts, getRandomPrompts, getRandomReplacement } from './data';
 import { texts } from './i18n';
@@ -11,11 +12,12 @@ const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
     all: defaultPrompts,
     shown: [],
-    copyMode: 'prompt',
+    copyMode: 'title+prompt',
     language: 'en'
   });
   
   const [isRandomizing, setIsRandomizing] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [replaceDialog, setReplaceDialog] = useState<{
     isOpen: boolean;
     targetId: number | null;
@@ -108,7 +110,7 @@ const App: React.FC = () => {
       content = state.shown.map((prompt, index) => {
         const title = state.language === 'zh' && prompt.titleZh ? prompt.titleZh : prompt.title;
         const promptText = state.language === 'zh' && prompt.promptZh ? prompt.promptZh : prompt.prompt;
-        return `${index + 1}. ${title}\n${promptText}`;
+        return `${index + 1}. **${title}**\n${promptText}`;
       }).join('\n\n');
     }
     
@@ -177,13 +179,17 @@ const App: React.FC = () => {
   const handleLanguageChange = (language: 'en' | 'zh') => {
     setState(prev => ({ ...prev, language }));
   };
+
+  const handleCopyModeChange = (copyMode: 'prompt' | 'title+prompt') => {
+    setState(prev => ({ ...prev, copyMode }));
+  };
   
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
         language={state.language}
         onLanguageChange={handleLanguageChange}
-        onSettingsClick={() => {/* TODO: Implement settings modal */}}
+        onSettingsClick={() => setSettingsOpen(true)}
       />
       
       <ControlsBar
@@ -228,6 +234,14 @@ const App: React.FC = () => {
         language={state.language}
         onSelect={handleReplaceDialogSelect}
         currentPromptIds={state.shown.map(p => p.id)}
+      />
+      
+      <SettingsModal
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        language={state.language}
+        copyMode={state.copyMode}
+        onCopyModeChange={handleCopyModeChange}
       />
       
       {/* Toast Notification */}

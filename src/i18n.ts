@@ -33,7 +33,7 @@ export const texts: Record<'en' | 'zh', LanguageTexts> = {
       language: "Language",
       copyMode: "Copy Mode",
       copyPromptOnly: "Prompt Only",
-      copyTitleAndPrompt: "Title + Prompt",
+      copyTitleAndPrompt: "**Title** + Prompt",
       importExport: "Import/Export",
       exportData: "Export Data",
       importData: "Import Data"
@@ -76,14 +76,14 @@ export const texts: Record<'en' | 'zh', LanguageTexts> = {
       noResults: "未找到提示词"
     },
     settings: {
-      language: "语言",
-      copyMode: "复制模式",
-      copyPromptOnly: "仅提示词",
-      copyTitleAndPrompt: "标题 + 提示词",
-      importExport: "导入/导出",
-      exportData: "导出数据",
-      importData: "导入数据"
-    },
+        language: "语言",
+        copyMode: "复制模式",
+        copyPromptOnly: "仅提示词",
+        copyTitleAndPrompt: "**标题** + 提示词",
+        importExport: "导入/导出",
+        exportData: "导出数据",
+        importData: "导入数据"
+      },
     toast: {
         copied: "已复制到剪贴板！",
         copiedAll: "全部3个提示词已复制到剪贴板！",
