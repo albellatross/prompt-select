@@ -10,7 +10,8 @@ export const texts: Record<'en' | 'zh', LanguageTexts> = {
     randomize: "🎲 Random 3 Prompts",
     randomizing: "🎲 Randomizing...",
     copyAll: "📋 Copy All 3",
-    copyAllJson: "📋 Copy JSON"
+    copyAllJson: "📋 Copy JSON",
+    lockScreenToggle: "🔒 Lockscreen Eligible"
   },
     card: {
       copy: "Copy",
@@ -57,7 +58,8 @@ export const texts: Record<'en' | 'zh', LanguageTexts> = {
       randomize: "🎲 随机3个提示词",
       randomizing: "🎲 随机抽取中...",
       copyAll: "📋 复制全部3个",
-      copyAllJson: "📋 复制JSON"
+      copyAllJson: "📋 复制JSON",
+      lockScreenToggle: "🔒 锁屏适配"
     },
     card: {
       copy: "复制",

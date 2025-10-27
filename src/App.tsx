@@ -13,7 +13,8 @@ const App: React.FC = () => {
     all: defaultPrompts,
     shown: [],
     copyMode: 'title+prompt',
-    language: 'en'
+    language: 'en',
+    isLockScreenEligible: false
   });
   
   const [isRandomizing, setIsRandomizing] = useState(false);
@@ -46,7 +47,8 @@ const App: React.FC = () => {
     
     // Load saved preferences
     const savedLanguage = localStorage.getItem('prompter-language') as 'en' | 'zh' | null;
-    const savedCopyMode = localStorage.getItem('prompter-copyMode') as 'prompt' | 'title+prompt' | null;
+  const savedCopyMode = localStorage.getItem('prompter-copyMode') as 'prompt' | 'title+prompt' | null;
+  const savedLock = localStorage.getItem('prompter-lockscreen');
     
     if (savedLanguage) {
       setState(prev => ({ ...prev, language: savedLanguage }));
@@ -54,12 +56,16 @@ const App: React.FC = () => {
     if (savedCopyMode) {
       setState(prev => ({ ...prev, copyMode: savedCopyMode }));
     }
+    if (savedLock !== null) {
+      setState(prev => ({ ...prev, isLockScreenEligible: savedLock === 'true' }));
+    }
   }, []);
   
   // Save preferences to localStorage
   useEffect(() => {
     localStorage.setItem('prompter-language', state.language);
     localStorage.setItem('prompter-copyMode', state.copyMode);
+    localStorage.setItem('prompter-lockscreen', String(!!state.isLockScreenEligible));
   }, [state.language, state.copyMode]);
   
   const showToast = (message: string, type: 'success' | 'error' = 'success') => {
@@ -152,11 +158,15 @@ const App: React.FC = () => {
   
   const handleCopyAllJson = async () => {
     if (state.shown.length === 0) return;
-    // Build JSON array with keys label & prompt (label uses title)
-    const jsonData = state.shown.map(p => ({
+    // Build JSON object with eligibility flag and items array
+    const items = state.shown.map(p => ({
       label: state.language === 'zh' && p.titleZh ? p.titleZh : p.title,
       prompt: state.language === 'zh' && p.promptZh ? p.promptZh : p.prompt
     }));
+    const jsonData = {
+      isLockScreenEligible: !!state.isLockScreenEligible,
+      items
+    };
     const jsonString = JSON.stringify(jsonData, null, 2);
     try {
       if (navigator.clipboard && window.ClipboardItem) {
@@ -234,6 +244,10 @@ const App: React.FC = () => {
   const handleCopyModeChange = (copyMode: 'prompt' | 'title+prompt') => {
     setState(prev => ({ ...prev, copyMode }));
   };
+
+  const handleToggleLockScreen = () => {
+    setState(prev => ({ ...prev, isLockScreenEligible: !prev.isLockScreenEligible }));
+  };
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -249,6 +263,8 @@ const App: React.FC = () => {
         isRandomizing={isRandomizing}
         onCopyAll={handleCopyAll}
         onCopyAllJson={handleCopyAllJson}
+        isLockScreenEligible={!!state.isLockScreenEligible}
+        onToggleLockScreen={handleToggleLockScreen}
         hasPrompts={state.shown.length > 0}
       />
       

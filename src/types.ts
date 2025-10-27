@@ -13,6 +13,7 @@ export interface AppState {
   shown: PromptItem[];
   copyMode: 'prompt' | 'title+prompt';
   language: 'en' | 'zh';
+  isLockScreenEligible?: boolean; // whether current prompt set is for lock screen
 }
 
 // Language types
@@ -26,6 +27,7 @@ export interface LanguageTexts {
     randomizing: string;
     copyAll: string;
     copyAllJson: string; // New: copy all as JSON
+    lockScreenToggle?: string; // label for lock screen toggle
   };
   card: {
     copy: string;
