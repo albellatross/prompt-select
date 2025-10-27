@@ -50,8 +50,8 @@ const PromptTable: React.FC<PromptTableProps> = ({
     const title = language === 'zh' && prompt.titleZh ? prompt.titleZh : prompt.title;
     const promptText = language === 'zh' && prompt.promptZh ? prompt.promptZh : prompt.prompt;
     
-    // 单个复制总是包含标题，标题和prompt之间有换行隔开
-    const content = `**${title}**\n\n${promptText}`;
+    // 单个复制总是包含标题，标题直接换行后跟prompt
+    const content = `**${title}**\n${promptText}`;
       
     onCopy(content);
     setCopiedId(prompt.id);

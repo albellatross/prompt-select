@@ -114,12 +114,12 @@ const App: React.FC = () => {
   const handleCopyAll = async () => {
     if (state.shown.length === 0) return;
     
-    // 一键复制总是包含标题和prompt，标题和prompt之间有换行隔开
+    // 一键复制总是包含标题和prompt，标题直接换行后跟prompt
     const content = state.shown.map((prompt) => {
       const title = state.language === 'zh' && prompt.titleZh ? prompt.titleZh : prompt.title;
       const promptText = state.language === 'zh' && prompt.promptZh ? prompt.promptZh : prompt.prompt;
-      return `**${title}**\n\n${promptText}`;
-    }).join('\n\n---\n\n');
+      return `**${title}**\n${promptText}`;
+    }).join('\n\n');
     
     try {
       // 尝试同时复制纯文本和富文本格式
