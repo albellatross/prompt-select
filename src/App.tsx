@@ -158,14 +158,14 @@ const App: React.FC = () => {
   
   const handleCopyAllJson = async () => {
     if (state.shown.length === 0) return;
-    // Build JSON object with eligibility flag and items array
-    const items = state.shown.map(p => ({
+    // Build JSON object with eligibility flag and remixSuggestions array
+    const remixSuggestions = state.shown.map(p => ({
       label: state.language === 'zh' && p.titleZh ? p.titleZh : p.title,
       prompt: state.language === 'zh' && p.promptZh ? p.promptZh : p.prompt
     }));
     const jsonData = {
       isLockScreenEligible: !!state.isLockScreenEligible,
-      items
+      remixSuggestions
     };
     const jsonString = JSON.stringify(jsonData, null, 2);
     try {

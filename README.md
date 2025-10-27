@@ -53,21 +53,21 @@ npm run preview
 2. **Copy Content**: Use the copy button on any prompt card
     - Use the top bar buttons:
        - 📋 Copy All 3 – Rich text (bold title + prompt, multi-format clipboard)
-       - 📋 Copy JSON – Structured object with `isLockScreenEligible` + `items` array:
+      - 📋 Copy JSON – Structured object with `isLockScreenEligible` + `remixSuggestions` array:
           ```json
-          {
-             "isLockScreenEligible": true,
-             "items": [
-                {
-                   "label": "Switch to Anime Look",
-                   "prompt": "Create this picture as an anime illustration, with expressive light, dynamic layout."
-                },
-                {
-                   "label": "Change to Pop Art",
-                   "prompt": "Create this picture as a high-saturation pop art, with bold blocks and hues."
-                }
-             ]
-          }
+             {
+                "isLockScreenEligible": true,
+                "remixSuggestions": [
+                   {
+                      "label": "Switch to Anime Look",
+                      "prompt": "Create this picture as an anime illustration, with expressive light, dynamic layout."
+                   },
+                   {
+                      "label": "Change to Pop Art",
+                      "prompt": "Create this picture as a high-saturation pop art, with bold blocks and hues."
+                   }
+                ]
+             }
           ```
     - Toggle the lockscreen eligibility (🔒) before copying JSON to control `isLockScreenEligible`.
 3. **Edit Prompts**: Click edit to modify titles and prompt text inline
