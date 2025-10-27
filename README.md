@@ -10,6 +10,8 @@ A minimalist, elegant prompt randomizer designed for creative AI workflows. Gene
 
 - **🎲 Random Generation**: Instantly generate 3 unique prompts from your collection
 - **📋 One-Click Copy**: Copy prompts or title+prompt combinations to clipboard
+ - **📋 One-Click Copy**: Copy prompts or title+prompt combinations to clipboard
+ - **🧾 JSON Export Copy**: Instant copy of current 3 prompts as structured JSON `[ { label, prompt }, ... ]`
 - **✏️ Inline Editing**: Edit prompts directly with intuitive save/cancel controls  
 - **🔄 Smart Replacement**: Replace individual prompts randomly or by selection
 - **🌍 Bilingual Support**: Seamless switching between English and Chinese
@@ -49,6 +51,21 @@ npm run preview
 
 1. **Generate Prompts**: Click "🎲 Random 3 Prompts" to get started
 2. **Copy Content**: Use the copy button on any prompt card
+    - Use the top bar buttons:
+       - 📋 Copy All 3 – Rich text (bold title + prompt, multi-format clipboard)
+       - 📋 Copy JSON – Structured array like:
+          ```json
+          [
+             {
+                "label": "Switch to Anime Look",
+                "prompt": "Create this picture as an anime illustration, with expressive light, dynamic layout."
+             },
+             {
+                "label": "Change to Pop Art",
+                "prompt": "Create this picture as a high-saturation pop art, with bold blocks and hues."
+             }
+          ]
+          ```
 3. **Edit Prompts**: Click edit to modify titles and prompt text inline
 4. **Replace Individual**: Use "🎲 Random" for random replacement or "Replace ▾" for selection
 5. **Switch Languages**: Toggle between English and Chinese in the header

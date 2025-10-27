@@ -9,7 +9,8 @@ export const texts: Record<'en' | 'zh', LanguageTexts> = {
     controls: {
     randomize: "🎲 Random 3 Prompts",
     randomizing: "🎲 Randomizing...",
-    copyAll: "📋 Copy All 3"
+    copyAll: "📋 Copy All 3",
+    copyAllJson: "📋 Copy JSON"
   },
     card: {
       copy: "Copy",
@@ -55,7 +56,8 @@ export const texts: Record<'en' | 'zh', LanguageTexts> = {
     controls: {
       randomize: "🎲 随机3个提示词",
       randomizing: "🎲 随机抽取中...",
-      copyAll: "📋 复制全部3个"
+      copyAll: "📋 复制全部3个",
+      copyAllJson: "📋 复制JSON"
     },
     card: {
       copy: "复制",
@@ -87,6 +89,7 @@ export const texts: Record<'en' | 'zh', LanguageTexts> = {
     toast: {
         copied: "已复制到剪贴板！",
         copiedAll: "全部3个提示词已复制到剪贴板！",
+        copiedAllJson: "JSON已复制到剪贴板！",
         saved: "更改已保存！",
         error: "出现错误",
         imported: "数据导入成功！",

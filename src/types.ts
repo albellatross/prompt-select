@@ -25,6 +25,7 @@ export interface LanguageTexts {
     randomize: string;
     randomizing: string;
     copyAll: string;
+    copyAllJson: string; // New: copy all as JSON
   };
   card: {
     copy: string;
@@ -56,6 +57,7 @@ export interface LanguageTexts {
   toast: {
     copied: string;
     copiedAll: string;
+    copiedAllJson?: string; // Optional separate toast for JSON copy
     saved: string;
     error: string;
     imported: string;

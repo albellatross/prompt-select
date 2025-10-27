@@ -150,6 +150,36 @@ const App: React.FC = () => {
     }
   };
   
+  const handleCopyAllJson = async () => {
+    if (state.shown.length === 0) return;
+    // Build JSON array with keys label & prompt (label uses title)
+    const jsonData = state.shown.map(p => ({
+      label: state.language === 'zh' && p.titleZh ? p.titleZh : p.title,
+      prompt: state.language === 'zh' && p.promptZh ? p.promptZh : p.prompt
+    }));
+    const jsonString = JSON.stringify(jsonData, null, 2);
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        const clipboardItem = new ClipboardItem({
+          'application/json': new Blob([jsonString], { type: 'application/json' }),
+          'text/plain': new Blob([jsonString], { type: 'text/plain' })
+        });
+        await navigator.clipboard.write([clipboardItem]);
+      } else {
+        await navigator.clipboard.writeText(jsonString);
+      }
+      showToast(t.toast.copiedAllJson || t.toast.copiedAll);
+    } catch (e) {
+      const textArea = document.createElement('textarea');
+      textArea.value = jsonString;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      showToast(t.toast.copiedAllJson || t.toast.copiedAll);
+    }
+  };
+
   const handleSave = (id: number, title: string, prompt: string) => {
     setState(prev => {
       const newAll = prev.all.map(p => 
@@ -218,6 +248,7 @@ const App: React.FC = () => {
         onRandomize={handleRandomize}
         isRandomizing={isRandomizing}
         onCopyAll={handleCopyAll}
+        onCopyAllJson={handleCopyAllJson}
         hasPrompts={state.shown.length > 0}
       />
       

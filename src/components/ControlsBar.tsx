@@ -7,10 +7,11 @@ interface ControlsBarProps {
   onRandomize: () => void;
   isRandomizing: boolean;
   onCopyAll: () => void;
+  onCopyAllJson: () => void; // new prop for JSON copy
   hasPrompts: boolean;
 }
 
-const ControlsBar: React.FC<ControlsBarProps> = ({ language, onRandomize, isRandomizing, onCopyAll, hasPrompts }) => {
+const ControlsBar: React.FC<ControlsBarProps> = ({ language, onRandomize, isRandomizing, onCopyAll, onCopyAllJson, hasPrompts }) => {
   const t = texts[language];
   
   return (
@@ -40,13 +41,22 @@ const ControlsBar: React.FC<ControlsBarProps> = ({ language, onRandomize, isRand
           </button>
 
           {hasPrompts && (
-            <button
-              onClick={onCopyAll}
-              className="flex items-center space-x-2 px-6 py-3 rounded-xl font-medium text-lg bg-white border-2 border-primary-200 text-primary-700 hover:border-primary-300 hover:bg-primary-50 transition-all duration-200 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-            >
-              <Copy size={20} />
-              <span>{t.controls.copyAll}</span>
-            </button>
+            <>
+              <button
+                onClick={onCopyAll}
+                className="flex items-center space-x-2 px-6 py-3 rounded-xl font-medium text-lg bg-white border-2 border-primary-200 text-primary-700 hover:border-primary-300 hover:bg-primary-50 transition-all duration-200 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+              >
+                <Copy size={20} />
+                <span>{t.controls.copyAll}</span>
+              </button>
+              <button
+                onClick={onCopyAllJson}
+                className="flex items-center space-x-2 px-6 py-3 rounded-xl font-medium text-lg bg-white border-2 border-indigo-200 text-indigo-700 hover:border-indigo-300 hover:bg-indigo-50 transition-all duration-200 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                <Copy size={20} />
+                <span>{t.controls.copyAllJson}</span>
+              </button>
+            </>
           )}
         </div>
       </div>
